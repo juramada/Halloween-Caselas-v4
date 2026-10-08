@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="pt-PT"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Halloween Caselas 2026</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+:root{--bg:#08070b;--p:#141118;--txt:#faf6ef;--mut:#aaa1ae;--o:#ff7918;--line:#302633}
+*{box-sizing:border-box}body{margin:0;background:#030205;color:var(--txt);font:15px system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:560px;margin:auto;background:var(--bg);min-height:100vh}
+header{padding:16px 18px;padding-top:calc(16px + env(safe-area-inset-top,0px));position:sticky;top:0;z-index:10;background:#09070df0;border-bottom:1px solid #211b25}
+.brand{font-weight:900;font-size:20px}.brand small{display:block;color:#ffad43;font-size:10px;letter-spacing:1.6px;margin-top:2px}
+main{padding-bottom:96px}.view{display:none}.view.on{display:block}
+.hero{padding:20px 18px 8px}.ey{color:#ffae42;font-size:11px;font-weight:900;letter-spacing:1.5px}.hero h1{font-size:36px;line-height:1.02;letter-spacing:-1.5px;margin:7px 0 10px}.hero p{color:var(--mut);line-height:1.45;margin:0}
+.section{padding:8px 18px}.card{background:var(--p);border:1px solid var(--line);border-radius:18px;padding:15px;margin-bottom:10px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px}.title{font-weight:900}.mut{color:var(--mut);font-size:12px;margin-top:4px}
+.tag{font-size:10px;font-weight:900;padding:5px 8px;border-radius:99px;background:#261c2a;white-space:nowrap}.tag.open{background:#17341a;color:#b4efa8}
+.btn{border:0;border-radius:13px;padding:13px 15px;font-weight:900;cursor:pointer;font:inherit;font-weight:900}.primary{background:var(--o);color:#120903}.dark{background:#251d28;color:#fff;border:1px solid #3b303d}.full{width:100%;margin-top:10px}.sm{padding:8px 11px;font-size:12px}
+.input,select,textarea{width:100%;background:#0f0c12;border:1px solid #392d3b;color:#fff;border-radius:12px;padding:12px;margin:6px 0 10px;font:inherit}
+label{font-size:12px;color:var(--mut)}
+.filters{display:flex;gap:7px;overflow-x:auto;padding:5px 18px 10px}.filter{white-space:nowrap;border:1px solid #352b37;background:#151016;color:#bbb1bd;border-radius:99px;padding:8px 11px;font-size:12px;font-weight:800;cursor:pointer}.filter.sel{color:#fff;background:#2b202e;border-color:#58445c}
+.mapbox{margin:0 18px;border-radius:20px;overflow:hidden;border:1px solid #342a37;background:#161018}.mapbox svg{display:block;width:100%;height:auto}
+.pin{cursor:pointer}.pin text{font-size:12px;text-anchor:middle}.zc{position:absolute;top:10px;right:10px;display:flex;flex-direction:column;gap:6px}.zc button{width:36px;height:36px;border-radius:10px;border:1px solid #58445c;background:#2b202eee;color:#fff;font-size:18px;font-weight:900;cursor:pointer}
+.progress{background:var(--p);border:1px solid var(--line);border-radius:19px;padding:17px}.big{font-size:48px;font-weight:900;letter-spacing:-2px}
+.bar{height:9px;background:#2c2430;border-radius:99px;overflow:hidden;margin:10px 0}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--o),#ffc34f);transition:.3s}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin-top:14px}.m{aspect-ratio:1;border-radius:13px;background:#201923;display:grid;place-items:center;font-size:25px;opacity:.35}.m.y{opacity:1;background:#2b1a0e;border:1px solid #6a3c19}
+.code{display:flex;gap:7px;margin-top:13px}.code input{flex:1;min-width:0;margin:0}
+.msg{margin-top:10px;background:#18331b;border:1px solid #2c5b31;color:#b8efad;padding:11px;border-radius:12px;font-size:13px;display:none}.msg.show{display:block}.msg.bad{background:#35161a;border-color:#6b2b33;color:#f2b3ba}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.stat{background:#17121a;border:1px solid #2e2531;border-radius:13px;padding:12px}.stat b{display:block;font-size:22px}.stat span{font-size:10px;color:var(--mut)}
+.notice{border-left:3px solid var(--o)}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(560px,100%);display:grid;grid-template-columns:repeat(6,1fr);background:#0c0910f5;border-top:1px solid #2b222e;z-index:20;padding:7px 5px calc(9px + env(safe-area-inset-bottom,0px))}
+.nav{background:none;color:#c4b9c9;border:0;font-size:11px;font-weight:900;cursor:pointer;padding:4px 1px}.nav b{display:block;font-size:18px;line-height:1.1;margin-bottom:2px}.nav.on{color:#fff}.nav.on b{filter:drop-shadow(0 0 5px #ff7918)}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:40;align-items:flex-end}.modal.on{display:flex}
+.sheet{background:#171219;border:1px solid #382d3a;width:min(560px,100%);margin:auto;padding:19px;border-radius:22px 22px 0 0;max-height:90vh;overflow:auto}
+.close{float:right;border:0;background:#28202b;color:#fff;border-radius:50%;width:32px;height:32px;cursor:pointer}
+.qr{background:#fff;padding:12px;width:210px;margin:12px auto;border-radius:8px}.qr svg{width:100%;height:auto;display:block}
+.cert{background:#fff8ea;color:#2a1405;border:6px double #ff7918;border-radius:12px;padding:22px;text-align:center}.cert h2{margin:6px 0;font-size:26px}.cert big{font-size:44px}
+@media print{@page{size:A4 landscape;margin:10mm}header,main,nav,.close,.noprint{display:none!important}body,.wrap{background:#fff}.modal{position:static;background:none;display:block}.sheet{border:0;background:#fff;padding:0}}
+</style></head>
+<body><div class="wrap">
+<header><div class="brand">🎃 Halloween Caselas <small>31 OUTUBRO 2026 · 19:30–21:30</small></div></header>
+<main>
+<section id="home" class="view on"><div class="hero"><div class="ey">O BAIRRO SAI À RUA</div><h1>Caselas fica assombrada.</h1><p>Uma noite de doces, disfarces e caça aos monstros, feita pelos vizinhos.</p></div>
+<div class="section" id="myhouse"></div><div class="section" id="notices"></div>
+<div class="section"><div class="card"><div class="title">👻 A caça está pronta</div><div class="mut">Encontra 10 monstros escondidos pelas casas participantes.</div><button class="btn primary full" onclick="go('hunt')">Começar a caça</button></div>
+<div class="card"><div class="title">📢 Inscrições abertas</div><div class="mut">As casas podem inscrever-se até 28 de outubro.</div><button class="btn dark full" onclick="go('join')">Quero participar</button></div>
+<div class="card"><div class="title">🍬 Regras de ouro</div><div class="mut" id="rules" style="font-size:13px"></div></div></div></section>
+
+<section id="map" class="view"><div class="hero"><div class="ey">MAPA</div><h1>Segue os doces.</h1><p>Toca num ponto para ver a casa.</p></div>
+<div class="filters" id="filters"></div>
+<div id="esqmap"><div class="mapbox" style="position:relative"><svg viewBox="0 0 500 300" id="svg" style="touch-action:none;cursor:grab"><rect width="500" height="300" fill="#161018"/><g id="vp"><g transform="scale(.34)">
+<path d="M-20 300L800 -10" stroke="#2d3350" stroke-width="70" fill="none"/><path d="M1480 380L1130 900" stroke="#2d3350" stroke-width="60" fill="none"/>
+<path d="M575 462Q640 440 690 420L715 355" stroke="#2f2434" stroke-width="5" fill="none"/>
+<g stroke="#3b2f42" stroke-width="15" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M975 66H1395M975 157H1395M975 315H1469M1400 0V315M1083 157V445M1188 157V400M1295 157V315"/>
+<path d="M975 62V320Q960 400 880 450Q830 480 760 480H665Q650 482 650 500V655"/><path d="M650 655H870L1469 295"/><path d="M865 480V886M752 490V655M438 568H650"/>
+<path d="M975 315H915C915 290 900 283 870 283H830C810 283 808 312 812 330C816 345 840 346 870 346C900 346 915 340 915 315"/>
+<path d="M115 318V660L230 738H865"/><path d="M115 318H320C325 285 360 265 385 275C410 285 425 305 440 330L548 520V738"/>
+<path d="M222 318V738M328 318V738M438 318V738M115 480H438"/><path d="M650 655V740Q665 800 685 890M780 740V855H865"/></g>
+<text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(962 190) rotate(-90)">R. Padre Reis Lima</text><text x="1190" y="164" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">R. do Casal da Raposa</text><text x="1180" y="73" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">R. Sara Afonso</text><text x="1250" y="322" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">R. da Igreja</text><text x="275" y="487" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">R. do Miradouro</text><text x="440" y="745" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">R. do Gravato</text><text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(640 790) rotate(-80)">R. Sam Levy</text><text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(1010 535) rotate(-37)">R. da Cruz a Caselas</text><text x="545" y="575" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle">Rua do Gabarete</text><text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(505 415) rotate(58)">R. António Janeiro</text><text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(430 450) rotate(-90)">R. Margiochis</text><text x="0" y="0" font-size="17" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(1355 650) rotate(-55)">Av. das Descobertas</text><text x="0" y="0" font-size="19" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(380 195) rotate(-20)">A5 · IC15</text><text x="0" y="0" font-size="15" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(1075 300) rotate(-90)">R. Virgínia Quaresma</text><text x="0" y="0" font-size="15" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(1180 300) rotate(-90)">R. Alice Pestana</text><text x="0" y="0" font-size="15" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(856 800) rotate(-90)">R. Padre Luís Fróis</text><text x="0" y="0" font-size="15" font-weight="700" fill="#a58fab" text-anchor="middle" transform="translate(105 560) rotate(-90)">R. José Calheiros</text><text x="840" y="255" font-size="16" font-weight="700" fill="#a58fab" text-anchor="middle">Igreja da Sagrada Família</text>
+<text x="838" y="312" font-size="30" text-anchor="middle">⛪</text><text x="680" y="535" font-size="24" text-anchor="middle">🌳</text><text x="560" y="590" font-size="22" text-anchor="middle">🌳</text>
+</g><g id="pins"></g></g></svg>
+<div class="zc"><button onclick="zoomBy(1.5)">+</button><button onclick="zoomBy(1/1.5)">−</button><button onclick="zreset()">⟲</button></div></div></div>
+<div class="section" style="margin-top:12px"><div class="mut" style="margin:0 0 8px">Esquema do bairro feito a partir do mapa, não à escala; as posições das casas são aproximadas. Arrasta para mover; usa + / − ou beliscar para zoom.</div><div id="houses"></div></div></section>
+
+<section id="hunt" class="view"><div class="hero"><div class="ey">CAÇADORES</div><h1>Apanha todos os monstros.</h1><p>Em cada casa há um QR code. Lê-o com a câmara ou escreve o código à mão.</p><button class="btn primary full" onclick="startScanner()">📷 Ligar câmara e ler QR</button><div id="reader" style="margin-top:10px;border-radius:14px;overflow:hidden"></div><div id="scanMsg" class="msg"></div></div>
+<div class="section"><div class="progress"><div><span id="n" class="big">0</span> <span class="mut">/ <span id="tot">10</span></span></div><div class="bar"><i id="bar"></i></div><div id="pt" class="mut"></div><div id="mons" class="grid"></div>
+<div class="code"><input id="code" class="input" placeholder="CASELAS-01" autocapitalize="characters"><button class="btn primary" onclick="claim()">Apanhar</button></div><div id="ok" class="msg"></div></div></div>
+<div class="section"><div class="card"><div class="title">🏆 Certificado de Caçador</div><div class="mut">Abre o teu certificado. Fica desbloqueado quando apanhares todos os monstros.</div><button class="btn dark full" onclick="cert()">Ver certificado</button></div></div></section>
+
+
+<section id="photos" class="view"><div class="hero"><div class="ey">FOTOS & VOTAÇÃO</div>
+<h1>Mostra o teu Halloween.</h1><p>Publica fotografias e vota em duas categorias: melhor disfarce e melhor casa.</p></div>
+<div class="section">
+<div class="card"><div class="title">📸 Colocar foto</div>
+<div class="mut">Escolhe a categoria e adiciona uma fotografia. A foto fica disponível neste dispositivo nesta versão.</div>
+<select class="input" id="photoCat"><option value="house">🏠 Melhor casa</option><option value="costume">🎭 Melhor disfarce</option></select>
+<input class="input" id="photoName" placeholder="Nome da casa ou do disfarce">
+<input class="input" id="photoFile" type="file" accept="image/*" onchange="previewPhoto(event)">
+<img id="photoPreview" style="display:none;width:100%;border-radius:14px;margin-top:4px;max-height:320px;object-fit:cover">
+<button class="btn primary full" onclick="addPhoto()">Publicar foto</button><div id="photoMsg" class="msg"></div></div>
+</div>
+<div class="section"><div class="card"><div class="title">🏆 Melhor casa</div><div class="mut">Vota na casa mais assustadora, criativa ou bem decorada.</div><div id="houseRanking"></div></div>
+<div class="card"><div class="title">🎭 Melhor disfarce</div><div class="mut">Vota no disfarce que merece levar a coroa.</div><div id="costumeRanking"></div></div></div></section>
+
+<section id="join" class="view"><div class="hero"><div class="ey">PARTICIPAR</div><h1>Vamos pôr Caselas a mexer.</h1><p>Preenche o pedido e a organização acrescenta a tua casa.</p></div>
+<div class="section"><form onsubmit="joinReq(event)" class="card"><label>Nome da casa / entidade<input required class="input" id="jn"></label><label>Morada<input required class="input" id="ja"></label><label>Contacto (telemóvel ou email)<input required class="input" id="jc"></label><label>Participação<select class="input" id="jt">
+<option>Casa com doces</option><option>Ponto de encontro</option></select></label>
+<label>Horário de participação<select class="input" id="jtime">
+<option>18:00–20:00</option><option>18:30–20:30</option><option>19:00–21:00</option><option selected>19:30–21:30</option>
+</select></label><button class="btn primary full">Enviar pedido</button><div id="joinok" class="msg"></div></form></div></section>
+
+<section id="admin" class="view"><div class="hero"><div class="ey">ORGANIZAÇÃO</div><h1>Painel Caselas.</h1><p>Área reservada à organização.</p></div>
+<div class="section" id="login"><div class="card"><input id="em" type="email" class="input" placeholder="Email" style="display:none"><label><span id="pinlbl">PIN de acesso</span><input id="pin" type="password" inputmode="numeric" class="input"></label><button class="btn primary full" onclick="login()">Entrar</button><div id="pinerr" class="msg bad"></div></div></div>
+<div id="panel" style="display:none">
+<div class="section"><div class="stats"><div class="stat"><b id="s1"></b><span>casas abertas</span></div><div class="stat"><b id="s2"></b><span>pedidos</span></div><div class="stat"><b id="s3"></b><span>monstros (este telemóvel)</span></div></div></div>
+<div class="section"><div class="card"><div class="title">Casas participantes</div><div class="mut">Toca para abrir/fechar. QR para imprimir.</div><button class="btn primary full" onclick="editHouse(-1)">＋ Nova casa</button><div id="adminhouses" style="margin-top:8px"></div></div></div>
+<div class="section"><div class="card"><div class="title">📢 Publicar aviso</div><input class="input" id="notice" placeholder="Ex.: Rua X já não tem doces"><button class="btn primary full" onclick="addNotice()">Publicar</button><div id="noticelist"></div></div></div>
+<div class="section"><div class="card"><div class="title">🍬 Regras de ouro</div><div class="mut">Texto que aparece no Início.</div><textarea id="rulesin" class="input" rows="4"></textarea><button class="btn primary full" onclick="saveRules()">Guardar</button></div></div>
+<div class="section"><div class="card"><div class="title">📝 Pedidos de participação</div><div id="reqs" style="margin-top:8px"></div></div></div>
+<div class="section"><button class="btn dark full" onclick="logout()">Sair</button></div></div></section>
+</main>
+<nav>
+<button class="nav on" data-v="home">🏠<b>Início</b></button>
+<button class="nav" data-v="map">🗺️<b>Mapa</b></button>
+<button class="nav" data-v="hunt">👹<b>Caça</b></button>
+<button class="nav" data-v="photos">📸<b>Fotos</b></button>
+<button class="nav" data-v="join">🎃<b>Participar</b></button>
+<button class="nav" data-v="admin">⚙️<b>Admin</b></button>
+</nav>
+<div id="modal" class="modal" onclick="if(event.target===this)closeM()"><div class="sheet"><button class="close" onclick="closeM()">×</button><div id="mb"></div></div></div>
+<script>
+// [nome, zona, horário, aberta, código, emoji, tipo, x, y]
+let H=[["Casa dos Doces","Rua Padre Reis Lima, 26","19:30–21:30",1,"CASELAS-01","🎃","doces",325,119],["Os Morcegos","Zona central","18:30–20:30",1,"CASELAS-02","🦇","doces",75,177],["Covil da Bruxa","Zona oeste","18:00–20:00",0,"CASELAS-03","🧙","doces",50,160],["Casa Assombrada","Zona sul","19:00–20:30",1,"CASELAS-04","👻","doces",119,251],["Família Vampiro","Zona central","18:00–20:30",1,"CASELAS-05","🧛","doces",272,190],["Laboratório do Drácula","Zona nascente","18:30–20:30",0,"CASELAS-06","🧟","doces",420,80],["Mansão das Aranhas","Zona norte","18:00–20:00",1,"CASELAS-07","🕷️","doces",405,37],["Cripta do Esqueleto","Zona sul","18:30–20:30",1,"CASELAS-08","💀","doces",238,279],["Gato Preto","Zona central","18:00–20:30",1,"CASELAS-09","🐈‍⬛","doces",149,146],["Clube de Futebol de Caselas","Rua Padre Reis Lima · Ponto de encontro","19:30–21:30",1,"CASELAS-10","⚽","encontro",238,177]];
+H.forEach(h=>{h[9]=h[4];h[10]=h[10]||"auto"});
+const SB_URL="",SB_KEY=""; // preencher depois de criar o projeto Supabase
+let sb=null;try{if(SB_URL&&SB_KEY&&window.supabase)sb=supabase.createClient(SB_URL,SB_KEY)}catch(e){}
+const RULES="Só se bate à porta se a casa estiver de alguma forma identificada. Crianças pequenas vão sempre acompanhadas. Respeita o silêncio depois das 23:00.";
+const PIN="1234"; // demonstração: com backend, a autenticação passa para o servidor
+let S={found:[],open:{},notices:[],reqs:[],admin:false},flt="todas";
+try{Object.assign(S,JSON.parse(localStorage.getItem("hc26")||"{}"))}catch(e){}
+function save(){try{localStorage.setItem("hc26",JSON.stringify(S))}catch(e){}}
+const $=id=>document.getElementById(id);
+const ml=()=>"";
+const isOpen=i=>houseState(H[i])==="open";
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+function go(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("on"));$(id).classList.add("on");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("on",x.dataset.v===id));scrollTo(0,0)}
+document.querySelectorAll(".nav").forEach(x=>x.onclick=()=>go(x.dataset.v));
+const F=[["todas","Todas"],["abertas","🟢 Abertas"],["doces","🎃 Doces"],["encontro","📌 Encontro"]];
+function vis(i){const h=H[i];return flt==="todas"||(flt==="abertas"&&isOpen(i))||h[6]===flt}
+function render(){
+$("filters").innerHTML=F.map(f=>`<button class="filter ${flt===f[0]?'sel':''}" onclick="flt='${f[0]}';render()">${f[1]}</button>`).join("");
+const idx=H.map((_,i)=>i).filter(vis);
+$("pins").innerHTML=idx.map(i=>{const h=H[i],s=houseState(h);return`<g class="pin" data-x="${h[7]}" data-y="${h[8]}" onclick="hs(${i})"><circle r="11" fill="${s==="open"?"#ff7918":s==="low"?"#d78b22":"#4a3d4e"}" stroke="#fff" stroke-width="2"/><text y="4">${h[5]}</text></g>`}).join("");place();
+$("houses").innerHTML=idx.map(i=>{const h=H[i],s=houseState(h);return`<div class="card"><div class="row"><div><div class="title">${h[5]} ${h[0]}</div><div class="mut">${h[1]} · ${h[2]}</div></div><span class="tag ${stateClass(s)}">${stateEmoji(s)} ${stateLabel(s)}</span></div><button class="btn dark full" onclick="$('code').value='${h[4]}';go('hunt')">Caçar este monstro</button>${ml(i)}</div>`}).join("")||'<div class="card mut">Nada com este filtro.</div>';
+$("notices").innerHTML=`<div class="card notice"><div class="title">📢 Avisos</div>${S.notices.length?S.notices.map(n=>`<div class="mut" style="font-size:13px;color:#ddd3dc">• ${esc(n.t)} <span style="color:#817784">· ${esc(n.d)}</span></div>`).join(""):'<div class="mut">Sem avisos de momento.</div>'}</div>`;$("rules").textContent=S.rules||RULES;
+renderHunt();renderAdmin();renderMyHouse();renderPhotos()}
+function hs(i){const h=H[i],o=isOpen(i);$("mb").innerHTML=`<h2>${h[5]} ${esc(h[0])}</h2><p class="mut">${h[1]} · ${h[2]}<br>${h[6]==="doces"?"🎃 Doces":h[6]==="encontro"?"📌 Ponto de encontro":"📍 Atividade"} · ${o?"🟢 Aberta":"⚪ Fechada"}</p><button class="btn primary full" onclick="closeM();$('code').value='${h[4]}';go('hunt')">Caçar este monstro</button>${ml(i)}`;$("modal").classList.add("on")}
+function renderHunt(){const n=S.found.filter(id=>H.some(h=>h[9]===id)).length,T=H.length;$("n").textContent=n;$("tot").textContent=T;$("bar").style.width=(T?n*100/T:0)+"%";$("pt").textContent=n&&n===T?"Completaste a caça! 🏆":n?`Encontraste ${n} ${n===1?"monstro":"monstros"}.`:"Começa por visitar uma casa.";$("mons").innerHTML=H.map(h=>{const y=S.found.includes(h[9]);return`<div class="m ${y?'y':''}">${y?h[5]:"?"}</div>`}).join("")}
+
+async function claim(c){c=(typeof c==="string"?c:$("code").value).trim().toUpperCase();const ok=$("ok");let id=null;
+if(sb){const r=await sb.rpc("claim_house",{c});id=r.data&&r.data[0]?r.data[0].id:null}else{const h=H.find(h=>h[4]===c);id=h?h[9]:null}
+const i=H.findIndex(h=>h[9]===id);if(!id||i<0)return msg(ok,"Código inválido. Confirma o código na casa.",1);
+if(S.found.includes(id))return msg(ok,"Esse monstro já foi encontrado.",1);
+S.found.push(id);save();msg(ok,`${H[i][5]} Monstro encontrado: ${H[i][0]}!`);$("code").value="";render();
+if(S.found.length===H.length)setTimeout(cert,700)}
+
+function certSVG(name,em){return `<svg viewBox="0 0 400 280" style="width:100%;display:block;border-radius:10px" xmlns="http://www.w3.org/2000/svg" font-family="Georgia,serif"><rect width="400" height="280" fill="#fff6e5"/><rect x="8" y="8" width="384" height="264" rx="10" fill="none" stroke="#ff7918" stroke-width="4"/><rect x="15" y="15" width="370" height="250" rx="7" fill="none" stroke="#4b2a6b" stroke-width="1.5" stroke-dasharray="5 4"/>
+<g stroke="#c9b8d6" stroke-width=".8" fill="none"><path d="M16 16Q40 40 16 70M16 16Q50 30 70 16M16 16L52 52M16 16L28 56M16 16L56 28M384 16Q360 40 384 70M384 16Q350 30 330 16M384 16L348 52M384 16L372 56M384 16L344 28"/></g>
+<circle cx="200" cy="50" r="27" fill="#ffe08a"/><text x="200" y="62" font-size="34" text-anchor="middle">🎃</text><text x="128" y="44" font-size="20">🦇</text><text x="250" y="44" font-size="20">🦇</text><text x="48" y="250" font-size="22">👻</text><text x="330" y="250" font-size="22">👻</text>
+<text x="200" y="100" font-size="21" font-weight="700" fill="#3b1d56" text-anchor="middle" letter-spacing="1">CERTIFICADO DE CAÇADOR</text><text x="200" y="117" font-size="10" fill="#e8630a" text-anchor="middle" letter-spacing="2">HALLOWEEN CASELAS 2026</text>
+<text x="200" y="145" font-size="10" fill="#6b5a78" text-anchor="middle">Este certificado é atribuído a</text><text id="cname" x="200" y="172" font-size="24" font-style="italic" fill="#e8630a" text-anchor="middle">${esc(name||"O teu nome")}</text><line x1="95" y1="180" x2="305" y2="180" stroke="#4b2a6b"/>
+<text x="200" y="198" font-size="10" fill="#6b5a78" text-anchor="middle">por ter encontrado todos os monstros escondidos pelo bairro</text><text x="200" y="220" font-size="15" text-anchor="middle">${esc(em)}</text><text x="200" y="250" font-size="9" fill="#6b5a78" text-anchor="middle">31 de outubro de 2026 · Caselas, Lisboa</text></svg>`}
+function cert(){const n=S.found.length,T=H.length,ok=T>0&&n>=T,em=H.filter(h=>S.found.includes(h[9])).map(h=>h[5]).join(" ");
+$("mb").innerHTML=`<h2 class="noprint" style="margin-top:0">🏆 O teu certificado</h2>${ok?"":`<div class="msg show noprint" style="background:#2b1a0e;border-color:#6a3c19;color:#ffcf9a;margin:0 0 10px">Pré-visualização: ainda faltam ${T-n} ${T-n===1?"monstro":"monstros"} para o desbloqueares.</div>`}${certSVG("",em)}${ok?`<input class="input noprint" placeholder="Escreve o teu nome" oninput="$('cname').textContent=this.value||'O teu nome'"><button class="btn primary full noprint" onclick="window.print()">Imprimir / guardar PDF</button>`:""}`;$("modal").classList.add("on")}
+async function joinReq(e){e.preventDefault();const f=e.target,r={n:$("jn").value,a:$("ja").value,c:$("jc").value,t:$("jt").value,h:$("jtime").value};
+if(sb){const q=await sb.from("requests").insert({name:r.n,address:r.a,contact:r.c,kind:r.t});if(q.error)return msg($("joinok"),"Não foi possível enviar. Tenta novamente.",1)}else{r.d=new Date().toLocaleDateString("pt-PT");S.reqs.unshift(r);
+const code=nextCode(), nh=[r.n,r.a,r.h,1,code,"🎃","doces",250,150,code,"auto"];H.push(nh);S.houses=H;S.myHouseCode=code;save()}
+msg($("joinok"),"Casa registada. O cartaz está pronto para imprimir.");f.reset();renderAdmin();render();const rh=getRegisteredHouse();if(rh)showPoster(rh)}
+
+async function login(){if(sb){const r=await sb.auth.signInWithPassword({email:$("em").value.trim(),password:$("pin").value});if(r.error)return msg($("pinerr"),"Email ou palavra-passe incorretos.",1);$("pin").value="";await loadAll()}else if($("pin").value===PIN){S.admin=true;$("pin").value="";renderAdmin()}else msg($("pinerr"),"PIN incorreto.",1)}
+async function logout(){if(sb){await sb.auth.signOut()}S.admin=false;sb?await loadAll():renderAdmin()}
+
+function renderAdmin(){$("login").style.display=S.admin?"none":"block";$("panel").style.display=S.admin?"block":"none";if(!S.admin)return;
+if(document.activeElement!==$("rulesin"))$("rulesin").value=S.rules||RULES;$("s1").textContent=H.filter((_,i)=>isOpen(i)).length+"/"+H.length;$("s2").textContent=S.reqs.length;$("s3").textContent=S.found.length;
+$("adminhouses").innerHTML=H.map((h,i)=>`<div class="row" style="padding:9px 0;border-bottom:1px solid #29222c"><div><b>${h[5]} ${esc(h[0])}</b><div class="mut">${esc(h[4]||"")}</div></div><div style="display:flex;gap:6px"><button class="btn sm dark" onclick="showQR(${i})">QR</button><button class="btn sm dark" onclick="editHouse(${i})">✏️</button><select class="input sm" style="width:auto;margin:0" onchange="adminSetHouseState(${i},this.value)"><option value="auto" ${!h[10]||h[10]==="auto"?"selected":""}>Auto</option><option value="open" ${h[10]==="open"?"selected":""}>Aberta</option><option value="low" ${h[10]==="low"?"selected":""}>Poucos doces</option><option value="closed" ${h[10]==="closed"?"selected":""}>Fechada</option></select></div></div>`).join("");
+$("noticelist").innerHTML=S.notices.map((n,i)=>`<div class="row mut"><span>${esc(n.t)}</span><button class="btn sm dark" onclick="delNotice(${i})">×</button></div>`).join("");
+$("reqs").innerHTML=S.reqs.map(r=>`<div class="mut" style="padding:8px 0;border-bottom:1px solid #29222c"><b style="color:#fff">${esc(r.n)}</b> · ${esc(r.t)}<br>${esc(r.a)} · ${esc(r.c)} · ${esc(r.d)}</div>`).join("")||'<div class="mut">Sem pedidos.</div>'}
+
+async function addNotice(){const v=$("notice").value.trim();if(!v)return;$("notice").value="";if(sb){await sb.from("notices").insert({text:v});return loadAll()}S.notices.unshift({t:v,d:new Date().toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"})});save();render()}
+async function saveRules(){const v=$("rulesin").value.trim();if(!v)return;if(sb){const r=await sb.from("settings").upsert({key:"rules",value:v});if(r.error)return alert("Erro ao guardar.")}S.rules=v;save();render()}
+async function delNotice(i){if(sb){await sb.from("notices").delete().eq("id",S.notices[i].id);return loadAll()}S.notices.splice(i,1);save();render()}
+async function adminSetHouseState(i,v){H[i][10]=v;if(sb)await sb.from("houses").update({status:v}).eq("id",H[i][9]);else{S.houses=H;save()}render()}
+async function toggleOpen(i){H[i][3]=H[i][3]?0:1;if(sb)await sb.from("houses").update({open:!!H[i][3]}).eq("id",H[i][9]);else{S.houses=H;save()}render()}
+async function loadAll(){if(sb){try{const ss=(await sb.auth.getSession()).data.session;S.admin=!!ss;
+const a=await sb.from("houses").select(S.admin?"*":"id,name,address,hours,open,emoji,kind,x,y,created_at").order("created_at");
+if(!a.error)H=a.data.map(r=>[r.name,r.address,r.hours,r.open?1:0,r.code||null,r.emoji,r.kind,Number(r.x),Number(r.y),r.id,r.status||"auto"]);
+const n=await sb.from("notices").select("*").order("created_at",{ascending:false}).limit(10);
+if(!n.error)S.notices=n.data.map(r=>({id:r.id,t:r.text,d:new Date(r.created_at).toLocaleTimeString("pt-PT",{hour:"2-digit",minute:"2-digit"})}));
+const st=await sb.from("settings").select("*").eq("key","rules");if(!st.error&&st.data[0])S.rules=st.data[0].value;
+S.reqs=[];if(S.admin){const q=await sb.from("requests").select("*").order("created_at",{ascending:false});if(!q.error)S.reqs=q.data.map(r=>({n:r.name,a:r.address,c:r.contact,t:r.kind,d:new Date(r.created_at).toLocaleDateString("pt-PT")}))}}catch(e){}}else if(S.houses)H=S.houses;
+render()}
+
+// --- Halloween Caselas: participation, automatic house state, photos and QR scanner ---
+const DEFAULT_HOUSE_HOURS = "19:30–21:30";
+function parseHM(s){const m=String(s||"").match(/(\d{1,2}):(\d{2})/);return m?Number(m[1])*60+Number(m[2]):null}
+function houseState(h){
+  const override = h[10] || "auto";
+  if(override === "low") return "low";
+  if(override === "closed") return "closed";
+  const p=String(h[2]||DEFAULT_HOUSE_HOURS).split(/[–-]/);
+  const a=parseHM(p[0]),b=parseHM(p[1]);
+  if(a===null||b===null) return h[3] ? "open" : "closed";
+  const d=new Date(), now=d.getHours()*60+d.getMinutes();
+  return now>=a && now<=b ? "open" : "closed";
+}
+function stateLabel(s){return s==="open"?"ABERTA":s==="low"?"POUCOS DOCES":"FECHADA"}
+function stateClass(s){return s==="open"?"open":s==="low"?"low":""}
+function stateEmoji(s){return s==="open"?"🟢":s==="low"?"🟠":"⚪"}
+function timeUntil(h){
+  const p=String(h[2]||DEFAULT_HOUSE_HOURS).split(/[–-]/),a=parseHM(p[0]),b=parseHM(p[1]);
+  if(a===null||b===null)return "";
+  const d=new Date(),now=d.getHours()*60+d.getMinutes();
+  if(now<a)return "Abre às "+p[0];
+  if(now<=b)return "Aberta até às "+p[1];
+  return "Fechada até ao próximo horário";
+}
+function getRegisteredHouse(){
+  return S.myHouseCode ? H.find(h=>h[4]===S.myHouseCode) : null;
+}
+function posterSVG(h){
+  const name=esc(h[0]), addr=esc(h[1]), code=esc(h[4]||"");
+  return `<div style="background:#fff7e8;color:#2b1738;border:4px solid #ff7918;border-radius:18px;padding:24px;text-align:center">
+  <div style="font-size:46px">🎃</div><div style="font-size:28px;font-weight:900">HALLOWEEN CASELAS</div>
+  <div style="font-size:17px;color:#e8630a;font-weight:800;margin:6px 0 18px">31 OUTUBRO 2026</div>
+  <div style="font-size:25px;font-weight:900">${name}</div><div style="margin-top:6px">${addr}</div>
+  <div class="qr" id="posterQr" style="margin:18px auto"></div>
+  <div style="font-weight:900;font-size:17px">🍬 CASA PARTICIPANTE</div>
+  <div style="margin-top:14px;font-size:14px">Imprime e cola na porta.</div>
+  <div style="font-size:14px">Na noite, muda o estado da casa no separador Início.</div>
+  <div style="margin-top:12px;font-size:11px;color:#6b5a78">${code}</div></div>`;
+}
+function showPoster(h){
+  $("mb").innerHTML=`<h2 class="noprint">Cartaz da casa</h2>${posterSVG(h)}
+  <button class="btn primary full noprint" onclick="downloadPoster(${H.indexOf(h)})">⬇️ Descarregar PDF</button>`;
+  $("modal").classList.add("on");
+  setTimeout(()=>drawQr("posterQr",h[4]),30);
+}
+function drawQr(id,code){
+  try{const q=qrcode(0,"M");q.addData(location.href.split("?")[0]+"?c="+code);q.make();$(id).innerHTML=q.createSvgTag({scalable:true,margin:0})}catch(e){}
+}
+function downloadPoster(i){
+  const h=H[i], js=window.jspdf;
+  if(!js){window.print();return}
+  const {jsPDF}=js, doc=new jsPDF({orientation:"portrait",unit:"mm",format:"a4"});
+  doc.setFillColor(255,247,232);doc.rect(8,8,194,281,"F");
+  doc.setDrawColor(255,121,24);doc.setLineWidth(2);doc.rect(12,12,186,273);
+  doc.setTextColor(59,29,86);doc.setFontSize(25);doc.text("HALLOWEEN CASELAS",105,35,{align:"center"});
+  doc.setTextColor(232,99,10);doc.setFontSize(15);doc.text("31 OUTUBRO 2026",105,45,{align:"center"});
+  doc.setTextColor(43,23,56);doc.setFontSize(20);doc.text(h[0],105,66,{align:"center"});
+  doc.setFontSize(12);doc.text(h[1],105,76,{align:"center",maxWidth:160});
+  doc.setFontSize(16);doc.text("CASA PARTICIPANTE",105,195,{align:"center"});
+  doc.setFontSize(13);doc.text("Imprime e cola na porta.",105,210,{align:"center"});
+  doc.text("Na noite, muda o estado da casa",105,220,{align:"center"});
+  doc.text("no separador Início.",105,228,{align:"center"});
+  doc.setFontSize(9);doc.setTextColor(107,90,120);doc.text(h[4]||"",105,250,{align:"center"});
+  doc.save((h[0]||"casa").replace(/\s+/g,"-")+".pdf");
+}
+function renderMyHouse(){
+  const h=getRegisteredHouse(), el=$("myhouse");
+  if(!el)return;
+  if(!h){el.innerHTML="";return}
+  const s=houseState(h);
+  el.innerHTML=`<div class="card"><div class="row"><div><div class="title">${h[5]} ${esc(h[0])}</div><div class="mut">${esc(h[1])} · ${esc(h[2])}</div></div>
+  <span class="tag ${stateClass(s)}">${stateEmoji(s)} ${stateLabel(s)}</span></div>
+  <div class="mut">${timeUntil(h)}</div>
+  <div class="row" style="margin-top:9px;gap:7px">
+  <button class="btn dark sm" onclick="showPoster(getRegisteredHouse())">📄 Cartaz</button>
+  <select class="input" style="margin:0;flex:1" onchange="setMyHouseState(this.value)">
+  <option value="auto" ${!h[10]||h[10]==="auto"?"selected":""}>Automático</option>
+  <option value="open" ${h[10]==="open"?"selected":""}>Aberta</option>
+  <option value="low" ${h[10]==="low"?"selected":""}>Poucos doces</option>
+  <option value="closed" ${h[10]==="closed"?"selected":""}>Fechada</option></select></div>
+  <div class="mut">O estado automático segue o horário da casa. “Poucos doces” e “Fechada” podem ser definidos manualmente.</div></div>`;
+}
+function setMyHouseState(v){
+  const h=getRegisteredHouse();if(!h)return;
+  h[10]=v;S.myHouseState=v;S.houses=H;save();render();
+}
+function renderStateStyles(){
+  const s=document.getElementById("stateStyle");if(s)return;
+  const st=document.createElement("style");st.id="stateStyle";st.textContent=".tag.low{background:#4a2f10;color:#ffd08a}.photoGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.photoItem{background:#0f0c12;border:1px solid #392d3b;border-radius:14px;overflow:hidden}.photoItem img{width:100%;aspect-ratio:1;object-fit:cover}.photoItem .pi{padding:9px}.vote{width:100%;margin-top:7px}.rank{display:grid;gap:8px}.rankrow{display:flex;gap:8px;align-items:center;background:#0f0c12;border:1px solid #302633;border-radius:12px;padding:8px}.rankrow img{width:58px;height:58px;object-fit:cover;border-radius:9px}.rankrow .rmain{flex:1}.rankrow b{font-size:13px}.rankrow small{color:#aaa1ae}.rankrow button{white-space:nowrap}";
+  document.head.appendChild(st);
+}
+function photoData(){try{return JSON.parse(localStorage.getItem("hc26photos")||"[]")}catch(e){return[]}}
+function savePhotos(a){try{localStorage.setItem("hc26photos",JSON.stringify(a))}catch(e){alert("A fotografia é demasiado grande para o armazenamento local. Escolhe uma imagem mais pequena.")}}
+function previewPhoto(e){const f=e.target.files[0],im=$("photoPreview");if(!f){im.style.display="none";return}const r=new FileReader();r.onload=()=>{im.src=r.result;im.style.display="block"};r.readAsDataURL(f)}
+function addPhoto(){
+  const f=$("photoFile").files[0],name=$("photoName").value.trim(),cat=$("photoCat").value,box=$("photoMsg");
+  if(!f||!name)return msg(box,"Escolhe uma foto e indica o nome da casa ou do disfarce.",1);
+  const r=new FileReader();r.onload=()=>{const a=photoData();a.push({id:Date.now().toString(36),cat,name,img:r.result,votes:0});savePhotos(a);$("photoName").value="";$("photoFile").value="";$("photoPreview").style.display="none";msg(box,"Foto publicada. Agora pode receber votos.");renderPhotos()};r.readAsDataURL(f);
+}
+function votePhoto(id){
+  const voted=JSON.parse(localStorage.getItem("hc26votes")||"{}");if(voted[id])return;
+  const a=photoData(),p=a.find(x=>x.id===id);if(!p)return;p.votes++;voted[id]=1;localStorage.setItem("hc26votes",JSON.stringify(voted));savePhotos(a);renderPhotos();
+}
+function renderRanking(cat,target){
+  const a=photoData().filter(x=>x.cat===cat).sort((x,y)=>y.votes-x.votes);
+  $(target).innerHTML=a.length?`<div class="rank">${a.map((p,i)=>`<div class="rankrow"><img src="${p.img}"><div class="rmain"><b>${i<3?["🥇","🥈","🥉"][i]+" ":""}${esc(p.name)}</b><br><small>${p.votes} ${p.votes===1?"voto":"votos"}</small></div><button class="btn sm primary" onclick="votePhoto('${p.id}')">❤️ Votar</button></div>`).join("")}</div>`:'<div class="mut">Ainda não há fotos nesta categoria.</div>';
+}
+function renderPhotos(){renderStateStyles();if($("houseRanking")){renderRanking("house","houseRanking");renderRanking("costume","costumeRanking")}}
+let scanner=null;
+async function startScanner(){
+  const box=$("scanMsg");if(scanner){try{await scanner.stop()}catch(e){}scanner=null}
+  $("reader").innerHTML="";
+  scanner=new Html5Qrcode("reader");
+  try{
+    await scanner.start({facingMode:"environment"},{fps:10,qrbox:{width:230,height:230}},async txt=>{
+      try{await scanner.stop()}catch(e){}
+      scanner=null;
+      const c=new URL(txt,location.href).searchParams.get("c")||txt;
+      $("code").value=c;claim(c);
+    },()=>{});
+    msg(box,"Câmara ligada. Aponta para o QR code da casa.");
+  }catch(e){msg(box,"Não foi possível aceder à câmara. Confirma a permissão do navegador.",1)}
+}
+
+async function init(){S.found=S.found.filter(x=>typeof x==="string");if(sb){$("em").style.display="block";$("pin").inputMode="text";$("pinlbl").textContent="Palavra-passe"}await loadAll()}
+const EMO=["🎃","👻","🦇","🧙","🧛","🧟","🕷️","💀","🐈‍⬛","🕯️","⚽","🍬","🏠","👹","🌙","🧹"];let ed=null;
+function nextCode(){return"CASELAS-"+String(Math.max(0,...H.map(h=>parseInt((h[4]||"").replace(/\D/g,""))||0))+1).padStart(2,"0")}
+function editHouse(i){const h=i<0?null:H[i];ed={i,e:h?h[5]:"🎃",x:h?h[7]:250,y:h?h[8]:150};
+$("mb").innerHTML=`<h2>${h?"Editar casa":"Nova casa"}</h2><label>Nome<input class="input" id="en" value="${esc(h?h[0]:"")}"></label><label>Morada / zona<input class="input" id="ea" value="${esc(h?h[1]:"")}"></label><label>Horário<input class="input" id="eh" value="${esc(h?h[2]:"19:30–21:30")}"></label><label>Tipo<select class="input" id="ek"><option value="doces">Casa com doces</option><option value="encontro">Ponto de encontro</option></select></label><label>Ícone</label><div id="eem" style="display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px">${EMO.map(x=>`<button type="button" class="filter" data-e="${x}" style="font-size:20px" onclick="ed.e=this.dataset.e;mark()">${x}</button>`).join("")}</div><label>Posição: toca no mapa</label><div class="mapbox" style="margin:6px 0 10px"><svg id="esv" viewBox="0 0 500 300" style="display:block;width:100%;cursor:crosshair"></svg></div><button class="btn primary full" onclick="saveHouse()">Guardar</button>${h?'<button class="btn dark full" onclick="delHouse()">Apagar casa</button>':""}`;
+$("ek").value=h?h[6]:"doces";$("esv").innerHTML=`<rect width="500" height="300" fill="#161018"/>${$("vp").firstElementChild.outerHTML}<g id="ep"><circle r="11" fill="#ff7918" stroke="#fff" stroke-width="2"/><text id="eet" y="4" font-size="12" text-anchor="middle"></text></g>`;
+$("esv").onclick=e=>{const sv=$("esv"),p=sv.createSVGPoint();p.x=e.clientX;p.y=e.clientY;const q=p.matrixTransform(sv.getScreenCTM().inverse());ed.x=Math.round(q.x);ed.y=Math.round(q.y);mark()};mark();$("modal").classList.add("on")}
+function mark(){$("ep").setAttribute("transform",`translate(${ed.x} ${ed.y})`);$("eet").textContent=ed.e;document.querySelectorAll("#eem .filter").forEach(b=>b.classList.toggle("sel",b.dataset.e===ed.e))}
+async function saveHouse(){const n=$("en").value.trim();if(!n){$("en").focus();return}const a=$("ea").value.trim(),t=$("eh").value.trim(),k=$("ek").value;
+if(ed.i>=0){const h=H[ed.i];h[0]=n;h[1]=a;h[2]=t;h[5]=ed.e;h[6]=k;h[7]=ed.x;h[8]=ed.y;h[10]=h[10]||"auto";if(sb)await sb.from("houses").update({name:n,address:a,hours:t,emoji:ed.e,kind:k,x:ed.x,y:ed.y}).eq("id",h[9])}
+else{const code=nextCode();if(sb){const r=await sb.from("houses").insert({name:n,address:a,hours:t,open:true,status:"auto",code,emoji:ed.e,kind:k,x:ed.x,y:ed.y});if(r.error)return alert("Erro ao guardar a casa.")}else H.push([n,a,t,1,code,ed.e,k,ed.x,ed.y,code])}
+if(!sb){S.houses=H;save()}closeM();sb?await loadAll():render()}
+async function delHouse(){if(!confirm("Apagar esta casa?"))return;const h=H[ed.i];if(sb)await sb.from("houses").delete().eq("id",h[9]);else{H.splice(ed.i,1);S.houses=H;save()}closeM();sb?await loadAll():render()}
+
+function showQR(i){const h=H[i];let svg="";try{const q=qrcode(0,"M");q.addData(location.href.split("?")[0].split("#")[0]+"?c="+h[4]);q.make();svg=q.createSvgTag({scalable:true,margin:0})}catch(e){svg="<p>QR indisponível</p>"}
+$("mb").innerHTML=`<h2>QR · ${h[5]} ${esc(h[0])}</h2><p class="mut">Imprime e cola à porta. Ao ler, o monstro é apanhado automaticamente.</p><div class="qr">${svg}</div><div class="title" style="text-align:center">${h[4]}</div><button class="btn primary full noprint" onclick="window.print()">Imprimir</button>`;$("modal").classList.add("on")}
+function closeM(){$("modal").classList.remove("on")}
+const MW=500,MH=300;let z=1,tx=0,ty=0;
+function place(){document.querySelectorAll(".pin").forEach(g=>g.setAttribute("transform",`translate(${g.dataset.x} ${g.dataset.y}) scale(${1/z})`))}
+function apply(){tx=Math.min(0,Math.max(MW*(1-z),tx));ty=Math.min(0,Math.max(MH*(1-z),ty));$("vp").setAttribute("transform",`translate(${tx} ${ty}) scale(${z})`);place()}
+function zoomAt(f,cx,cy){const nz=Math.min(4,Math.max(1,z*f));tx=cx-(cx-tx)*nz/z;ty=cy-(cy-ty)*nz/z;z=nz;apply()}
+function zoomBy(f){zoomAt(f,MW/2,MH/2)}function zreset(){z=1;tx=ty=0;apply()}
+(function(){const sv=$("svg"),P=new Map();let moved=0,d0=0;
+const pt=e=>{const r=sv.getBoundingClientRect();return[(e.clientX-r.left)*MW/r.width,(e.clientY-r.top)*MH/r.height]};
+sv.addEventListener("wheel",e=>{e.preventDefault();const[x,y]=pt(e);zoomAt(e.deltaY<0?1.2:1/1.2,x,y)},{passive:false});
+sv.addEventListener("pointerdown",e=>{P.set(e.pointerId,[e.clientX,e.clientY]);moved=0;d0=0});
+addEventListener("pointermove",e=>{if(!P.has(e.pointerId))return;const o=P.get(e.pointerId),r=sv.getBoundingClientRect();P.set(e.pointerId,[e.clientX,e.clientY]);
+if(P.size===2){const[a,b]=[...P.values()],d=Math.hypot(a[0]-b[0],a[1]-b[1]);if(d0){const[x,y]=pt({clientX:(a[0]+b[0])/2,clientY:(a[1]+b[1])/2});zoomAt(d/d0,x,y)}d0=d;moved=9;return}
+const dx=e.clientX-o[0],dy=e.clientY-o[1];moved+=Math.abs(dx)+Math.abs(dy);if(moved>6){tx+=dx*MW/r.width;ty+=dy*MH/r.height;apply()}});
+const up=e=>{P.delete(e.pointerId);d0=0};addEventListener("pointerup",up);addEventListener("pointercancel",up);
+sv.addEventListener("click",e=>{if(moved>6)e.stopPropagation()},true)})();
+setInterval(()=>{renderMyHouse();render()},60000);
+init().then(()=>{try{const c=new URLSearchParams(location.search).get("c");if(c){go("hunt");claim(c)}}catch(e){}});
+</script></div></body></html>
